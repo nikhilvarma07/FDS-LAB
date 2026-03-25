@@ -1,14 +1,11 @@
 // Neo4j Cypher Queries
 
-MATCH (p:Person)
-WHERE p.age > 26
-RETURN p.name, p.age;
+CREATE (a:Person {name:'Alice', age:25});
+CREATE (b:Person {name:'Bob', age:27});
+CREATE (c:Person {name:'Charlie', age:30});
 
-MATCH (:Person)-[r:FRIENDS_WITH]->(:Person)
-RETURN COUNT(r);
+CREATE (a)-[:FRIENDS_WITH]->(b);
+CREATE (b)-[:FRIENDS_WITH]->(c);
+CREATE (a)-[:COLLEAGUE_OF]->(c);
 
-MATCH (a:Person {name:'Alice'})-[:FRIENDS_WITH]->(friends)
-RETURN friends.name;
-
-MATCH (a)-[:FRIENDS_WITH]->(b)-[:FRIENDS_WITH]->(c)
-RETURN a.name, c.name;
+MATCH (n) RETURN n;
